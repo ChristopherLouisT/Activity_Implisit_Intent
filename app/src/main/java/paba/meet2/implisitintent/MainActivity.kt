@@ -2,6 +2,7 @@ package paba.meet2.implisitintent
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,28 @@ class MainActivity : AppCompatActivity() {
 //                startActivity(_sendIntent)
                 startActivity(Intent.createChooser(_sendIntent, "Choose Your App"))
             }
+        }
+
+        val alarmBtn = findViewById<Button>(R.id.btnAlarm)
+        alarmBtn.setOnClickListener {
+            val _alarmIntent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
+                putExtra(AlarmClock.EXTRA_MESSAGE, "Coba Alarm")
+                putExtra(AlarmClock.EXTRA_HOUR, 11) //Ngatur di jam berapa
+                putExtra(AlarmClock.EXTRA_MINUTES, 40) //Ngatur di menit berapa
+                putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+
+            }
+            startActivity(_alarmIntent)
+        }
+
+        val timerBtn = findViewById<Button>(R.id.btnTimer)
+        timerBtn.setOnClickListener {
+            val _timerIntent = Intent(AlarmClock.ACTION_SET_TIMER).apply {
+                putExtra(AlarmClock.EXTRA_MESSAGE, "Coba Timer")
+                putExtra(AlarmClock.EXTRA_LENGTH, 40)
+                putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+            }
+            startActivity(_timerIntent)
         }
     }
 }
