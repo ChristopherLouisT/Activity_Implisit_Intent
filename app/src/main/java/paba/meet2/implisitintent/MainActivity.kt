@@ -1,9 +1,12 @@
 package paba.meet2.implisitintent
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.provider.CalendarContract
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -11,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +74,48 @@ class MainActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this, "No Browser App Found", Toast.LENGTH_LONG).show()
             }
+        }
+
+        val eventBtn = findViewById<Button>(R.id.btnEvent)
+        eventBtn.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
+
+            val datePickerDialog = DatePickerDialog(this, {_,selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(selectedYear, selectedMonth, selectedDay)
+
+                val timePickerDialog = TimePickerDialog(
+                    this, {_, selectedHour, selectedMinute ->
+                        val selectedDateTime = Calendar.getInstance()
+                        selectedDateTime.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute)
+
+                        val _eventIntent = Intent(Intent.ACTION_INSERT).apply {
+                            data = CalendarContract.Events.CONTENT_URI
+                            putExtra(CalendarContract.Events.TITLE, "Meeting")
+                            putExtra(CalendarContract.Events.EVENT_LOCATION, "Office")
+                            putExtra(CalendarContract.Events.DESCRIPTION, "Meeting Description")
+                            putExtra(CalendarContract.Events.ALL_DAY, false)
+
+                            val startTime = selectedDateTime.clone() as Calendar
+                            val endTime = selectedDateTime.clone() as Calendar
+                            endTime.add(Calendar.HOUR_OF_DAY, 1)
+                            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime.timeInMillis)
+                            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, endTime.timeInMillis)
+                        }
+                        startActivity(_eventIntent)
+                    },
+                    hour, minute, true
+                )
+                timePickerDialog.show()
+            },
+                year,month, day
+            )
+            datePickerDialog.show()
         }
     }
 }
