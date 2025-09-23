@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnMsg"
+        android:layout_margin="4dp"
         android:text="Message">
     </Button>
 
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnAlarm"
+        android:layout_margin="4dp"
         android:text="Set Alarm">
     </Button>
 
@@ -26,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnTimer"
+        android:layout_margin="4dp"
         android:text="Set Timer">
     </Button>
 
@@ -33,12 +36,14 @@
         android:id="@+id/tvAlamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:hint="Masukkan Nama Web (Google.com)" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnWebsite"
+        android:layout_margin="4dp"
         android:text="Open Web">
     </Button>
 
@@ -46,13 +51,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnEvent"
+        android:layout_margin="4dp"
         android:text="Set Event On Calendar">
     </Button>
 
     <ImageView
         android:id="@+id/ivHasil"
         android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerCrop"
@@ -64,6 +70,7 @@
         android:id="@+id/btnPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="Take a Picture">
     </Button>
 
