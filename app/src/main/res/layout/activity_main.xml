@@ -49,4 +49,22 @@
         android:text="Set Event On Calendar">
     </Button>
 
+    <ImageView
+        android:id="@+id/ivHasil"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_bg"
+        android:clipToOutline="true"
+        tools:targetApi="31"/>
+
+    <Button
+        android:id="@+id/btnPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Take a Picture">
+    </Button>
+
 </LinearLayout>
