@@ -29,4 +29,17 @@
         android:text="Set Timer">
     </Button>
 
+    <EditText
+        android:id="@+id/tvAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Nama Web (Google.com)" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnWebsite"
+        android:text="Open Web">
+    </Button>
+
 </LinearLayout>
