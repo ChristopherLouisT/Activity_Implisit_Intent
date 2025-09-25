@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +22,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ImplisitIntent">
+        android:theme="@style/Theme.ImplisitIntent" >
+
+        <service
+            android:name=".TrackerService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="location" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false" />
+<!--    Tugas Implisit Intent    -->
+
+<!--    Tinggal Tukar MainActivity -> Services dan sebaliknya jika ingin melihat salah satu tugas    -->
+
+<!--    Tugas Project Services    -->
+        <activity
+            android:name=".Services"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
